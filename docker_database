@@ -1,0 +1,5 @@
+docker run --name postgres-db -e POSTGRES_PASSWORD=1234 -p 5432:5432 -d postgres
+docker run -p 5432:5432 -v /tmp/database:/var/lib/postgresql/data -e POSTGRES_PASSWORD=1234 postgres
+
+create database coimobi
+    with owner postgres;
