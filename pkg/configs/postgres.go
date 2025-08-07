@@ -3,7 +3,7 @@ package configs
 import (
 	"fmt"
 	"github.com/joho/godotenv"
-	"github.com/vigmiranda/coimobi-service/api/models"
+	"github.com/vigmiranda/coimobi-service/internal/property/model"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"log"
@@ -46,6 +46,6 @@ func ConnectDatabase() {
 	if err != nil {
 		log.Panic("Error connecting to configs")
 	}
-	DB.AutoMigrate(&models.Property{})
+	DB.AutoMigrate(&model.Property{})
 
 }

@@ -1,4 +1,4 @@
-package models
+package model
 
 import "gorm.io/gorm"
 
@@ -6,7 +6,7 @@ type Property struct {
 	gorm.Model
 	Title        string  `json:"title"`          // Ex: "3-Bedroom Apartment - Moema/SP"
 	PropertyType string  `json:"property_type"`  // Apartment, House, Land, Commercial, etc.
-	Purpose      string  `json:"purpose"`        // Sale, Rent, Income, Resale
+	Purpose      int64   `json:"purpose"`        // Sale, Rent, Income, Resale
 	Description  string  `json:"description"`    // Full description, highlights, location details
 	UsableAreaM2 float64 `json:"usable_area_m2"` // Usable area in square meters
 	TotalAreaM2  float64 `json:"total_area_m2"`  // Total area in square meters
