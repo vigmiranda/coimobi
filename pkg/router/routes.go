@@ -2,6 +2,7 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/vigmiranda/coimobi-service/internal/auth/service"
 	"github.com/vigmiranda/coimobi-service/internal/property/controller"
 	"net/http"
 )
@@ -17,8 +18,17 @@ func SetupRoutes() *gin.Engine {
 
 	api := router.Group("/coimobi-admin")
 	{
+		// Authentication routes
+		authRoutes := api.Group("/auth")
+		{
+			authRoutes.POST("/login", service.LoginHandler)
+			//authRoutes.POST("/register", service.RegisterHandler) // Assuming you have a RegisterHandler
+			//authRoutes.POST("/refresh-token", service.RefreshTokenHandler) // Assuming you have a RefreshTokenHandler
+		}
+
 		// Property routes
 		propertiesRoutes := api.Group("/property")
+		propertiesRoutes.Use(service.AuthMiddleware())
 		{
 			propertiesRoutes.GET("/all", controller.GetAllProperties)
 			propertiesRoutes.GET("/:id", controller.GetProperty)
